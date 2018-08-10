@@ -1,0 +1,44 @@
+<section class="new-training" fxLayout fxLayoutAlign="center">
+  <form (ngSubmit)="onStartTraining(f)" #f="ngForm">
+      <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title fxLayoutAlign="center">
+        Time to start a workout!
+      </mat-card-title>
+      <mat-card-content fxLayoutAlign="center">
+        <mat-form-field *ngIf="!isLoading && exercises">
+          <mat-select placeholder="Choose Exercise" ngModel name="exercise" required>
+            <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">
+              {{ exercise.name }}
+            </mat-option>
+            <!-- instead of hard-coding our data with the code below, we're now showing the exercises dynamically through our TrainingService -->
+            <!-- <mat-option value="crunches">
+              Crunches
+            </mat-option>
+            <mat-option value="touch-toes">
+              Touch Toes
+            </mat-option>
+            <mat-option value="side-lunges">
+              Side Lunges
+            </mat-option>
+            <mat-option value="burpees">
+              Burpees
+            </mat-option> -->
+          </mat-select>
+        </mat-form-field>
+        <!-- the dropdown will only show whilst we're not loading and if the exercises property is not null -->     
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <!-- the spinner should be shown whenever we're loading -->
+      </mat-card-content>
+      <mat-card-actions *ngIf="!isLoading" fxLayoutAlign="center">
+        <!-- <button type="submit" mat-button (click)="onStartTraining()">Start</button> -->
+        <!-- we no longer need the click listener on the button as we're passing the form with ngSubmit -->
+        <button *ngIf="exercises" type="submit" mat-button [disabled]="f.invalid" style="margin-bottom: 15px;">Start</button>
+        <!-- we want to show the Start button only if we got exercises, so if exercises is true -->
+        <button *ngIf="!exercises" type="button" mat-raised-button color="primary" (click)="fetchExercises()" style="margin-bottom: 15px;">Try Again</button>
+        <!-- otherwise, if we got no exercises, if the exercises is equal to null, we want to show this Try Again button -->
+      </mat-card-actions>
+      <!-- the button will only show whilst we're not loading -->
+      <!-- we want to display the spinner instead of the Start button and the Dropdown on whilst we're waiting for the loading to happen; the condition is that we have access to the NewTrainingComponent and wait for the exercises to be fetched from the server, so we have to manage this in the TrainingService in the fetchAvailableExercises() method -->
+    </mat-card>
+  </form>
+</section>

@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <!-- fxHide.gt-xs means only apply fxHide on screens greater than 600px (gt-xs is a breakpoint that applies the following mediaQuery: screen and (min-width: 600px))' -->
+    <!-- <button mat-icon-button (click)="sidenav.toggle()"> -->
+      <!-- we could use the above approach to toggle the sidenav if all of its elements were in a single component, because sidenav is a local reference and can't be used from the outside -->
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="img-box">
+    <a routerLink="/">
+      <img src="../../../assets/img/logo.png" alt="Fitness Tracker">
+    </a>
+  </div>
+  <!-- <div fxFlex></div> -->
+  <!-- this is an alternative to the aproach below, and if we use this one, the div below should not include the flex directives because the div with the fxFlex directive above will take all the free space available between the div with the LOGO and the div with the LINKS and with that it will push the links to the far right -->
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <!-- fxHide hides the div; we want to hide this div only on small devices; fxHide.xs means only apply fxHide on very small screens (xs is a breakpoint that applies the following mediaQuery: screen and (max-width: 599px)) -->
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <li *ngIf="!isAuth">
+        <a routerLink="/signup">Signup</a>
+      </li>
+      <li *ngIf="!isAuth">
+        <a routerLink="/login">Login</a>
+      </li>
+      <!-- the Signup and Login button should only be displayed if the user is not logged in -->
+      <li *ngIf="isAuth">
+        <a routerLink="/training">Training</a>
+      </li>
+      <li *ngIf="isAuth">
+        <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
+      </li>
+      <!-- for the Training and Logout button the opposite is the case; should only be displayed if the user is logged in -->
+    </ul>
+  </div>
+</mat-toolbar>

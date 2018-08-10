@@ -1,0 +1,64 @@
+<section class="signup-form" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <h1>Sign Up</h1>
+  <!-- <mat-icon>person_add</mat-icon> -->
+  <form
+   fxLayout="column" 
+   fxLayoutAlign="center center" 
+   fxLayoutGap="10px" 
+   #f="ngForm" 
+   (ngSubmit)="onSubmit(f)">
+    <mat-form-field>
+      <input
+       type="email" 
+       matInput 
+       placeholder="Your Email" 
+       ngModel 
+       name="email" 
+       email
+       required
+       #emailInput="ngModel">
+       <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
+       <mat-error *ngIf="!emailInput.hasError('required')">E-Mail is invalid.</mat-error>
+       <!-- mat-error is part of the mat-form-field so we don't need to add an extra import for it -->
+    </mat-form-field>
+    <mat-form-field>
+    <!-- <mat-form-field hintLabel="Should be at least 6 characters long."> -->
+      <input
+       type="password" 
+       matInput 
+       placeholder="Your Password" 
+       ngModel 
+       name="password"
+       required
+       minlength="6"
+       #passwordInput="ngModel">
+       <!-- <mat-hint align="end">{{ passwordInput.value?.length }} / 6</mat-hint>
+       <mat-error>Has to be at least 6 characters long.</mat-error> -->
+       <mat-error *ngIf="(passwordInput.value?.length) < 6">Has to be at least 6 characters long.</mat-error>
+       <!-- <mat-hint>Should be at least 6 characters long.</mat-hint> -->
+       <!-- mat-hint is part of the mat-form-field so we don't need to add an extra import for it; mat-hint is one way to show hints, another is using the hintLabel directive on the mat-form-field element that we want to show hints for -->
+       <!-- mat-error overrides mat-hint -->
+    </mat-form-field>
+    <mat-form-field>
+      <input
+       matInput 
+       placeholder="Your Birthdate" 
+       [matDatepicker]="picker"
+       [max]="maxDate"
+       ngModel
+       name="birthdate"
+       required
+       #birthdateInput="ngModel">
+       <mat-hint>You have to be at least 18 years old.</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox labelPosition="after" color="primary" ngModel name="agree" required>Agree to Terms and Conditions.</mat-checkbox>
+    <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Sign Up</button>
+    <!-- the button will only show whilst we're not loading -->
+    <mat-spinner *ngIf="isLoading" strokeWidth="3" [diameter]="50"></mat-spinner>
+    <!-- the diameter represents the amount of pixels for both the width and the height of the spinner; in this case it has a size of 50x50 pixels -->
+    <!-- the spinner should be shown whenever we're loading -->
+    <!-- we want to display the spinner instead of the Signup button on whilst we're waiting for the login to happen; the condition is that we did submit the form but haven't received the response yet so we have to manage this in the AuthService in the registerUser() method -->
+  </form>
+</section>

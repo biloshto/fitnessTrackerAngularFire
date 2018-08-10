@@ -1,0 +1,47 @@
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="60%">
+    <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+<!-- input for filtering -->
+<mat-table [dataSource]="dataSource" matSort>
+<!-- the matSort directive makes the table sortable, so to say; we then have to define by which headers we can sort because by default no header, no column is sortable because sometimes we don't want to make all the columns sortable, just some of them -->
+  <ng-container matColumnDef="date">
+  <!-- the date when we finished an exercise, or cancelled it -->
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+    <!-- with the mat-sort-header selector we make this header, this column sortable -->
+    <!-- <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell> -->
+    <!-- this worked until we used Firebase as our back-end -->
+    <mat-cell *matCellDef="let element">{{ element.date.toDate() | date }}</mat-cell>
+    <!-- if we got a field with format Date from Firebase we have to convert it with the toDate() function before our pipe to be able to display the date in our UI, otherwise the Data fields would be empty in our table; we can use {{ element.date.toDate() | date: 'dd/MM/yyyy' }} instead if we want our dates to be formatted -->
+    <!-- let element gives us access to the element property which will be passed to us by the Material table component so that we can actually output the value we get through string interpolation here -->
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="calories">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Calories</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.calories | number }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="duration">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.duration | number }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <!-- with matRowDef we're telling how the rows should be displayed; we're rendering all the rows for all the header values we got -->
+</mat-table>
+<!-- we need to configure displayedColumns in our past-trainings.component.ts file, and dataSource as well -->
+
+<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[1, 5, 10, 20]" showFirstLastButtons></mat-paginator>
+<!-- adding pagination to the data table; pageSize determines how many items should be displayed on a given page initially; pageSizeOptions defines which steps we want to present to the user, besides the forward and backward buttons, so to jump to page 5, 10, and 20; and we also assign a local reference here by which we can grad access to the paginator later -->

@@ -1,0 +1,88 @@
+<!-- <section>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center center">
+    <mat-form-field>
+      <input type="email" matInput placeholder="Your email" formControlName="email">
+      <mat-hint>Please enter a valid email.</mat-hint>
+      <mat-error>Invalid or missing email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Your password" formControlName="password">
+      <mat-hint>Please enter your password.</mat-hint>
+      <mat-error>Missing password.</mat-error>
+    </mat-form-field>
+    <button *ngIf="!isLoading"
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="loginForm.invalid">Submit</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </form>
+</section> -->
+
+<!-- <section>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center center">
+    <mat-form-field>
+      <input type="email" matInput placeholder="Your email" formControlName="email">
+      <mat-hint>Please enter a valid email.</mat-hint>
+      <mat-error>Invalid or missing email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Your password" formControlName="password">
+      <mat-hint>Please enter your password.</mat-hint>
+      <mat-error>Missing password.</mat-error>
+    </mat-form-field>
+    <button type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="loginForm.invalid">Submit</button>
+  </form>
+</section> -->
+
+
+<section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <h1>Log In</h1>
+  <form 
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px" 
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input
+       type="email" 
+       matInput 
+       placeholder="Your email" 
+       formControlName="email">
+      <mat-hint>Please enter a valid email.</mat-hint>
+      <mat-error>Invalid or missing email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+       type="password" 
+       matInput 
+       placeholder="Your password" 
+       formControlName="password">
+      <mat-hint>Please enter your password.</mat-hint>
+      <mat-error>Missing password.</mat-error>
+    </mat-form-field>
+    <button *ngIf="!isLoading" type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="loginForm.invalid">Login</button>
+    <!-- the button will only show whilst we're not loading -->
+    <mat-spinner *ngIf="isLoading" strokeWidth="3" [diameter]="50"></mat-spinner>
+    <!-- the diameter represents the amount of pixels for both the width and the height of the spinner; in this case it has a size of 50x50 pixels -->
+    <!-- the spinner should be shown whenever we're loading -->
+    <!-- we want to display the spinner instead of the Login button on whilst we're waiting for the login to happen; the condition is that we did submit the form but haven't received the response yet so we have to manage this in the AuthService in the login() method -->
+  </form>
+</section>

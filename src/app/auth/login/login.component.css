@@ -1,0 +1,36 @@
+section {
+  padding: 30px 0;
+}
+
+h1 {
+  letter-spacing: 1px;
+  font-size: 180%;
+  word-spacing: 2px;
+  text-align: center;
+}
+
+form {
+  padding: 20px 0;
+  width: 350px;
+  border-top: 2px solid #f44336;
+  /* border-top: 2px solid #3f51b5; */
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background:rgba(0,0,0,0.05);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.125) 100%);
+}
+
+mat-form-field {
+  width: 85%;
+}
+
+mat-checkbox {
+  margin-top: 10px;
+  font-size: 80%;
+}
+
+button {
+  width: 85%;
+  margin: 10px 0;
+  border-radius: 5px;
+}

@@ -1,0 +1,16 @@
+<section class="current-training" fxLayout="column" fxLayoutAlign="center center">
+  <mat-progress-spinner mode="determinate" [value]="progress">
+    <!-- if mode is determinate we're requried to set values between 0 and 100 to tell the spinner what to render; in our case we're rendering the value dynamically -->
+
+  </mat-progress-spinner>
+  <h1>{{ progress }}%</h1>
+  <p>
+    If you want to get fit,
+    <br>
+    you have to give away only one thing.
+  </p>
+  <span>Your excuses.</span>
+  <button mat-raised-button color="accent" (click)="onStop()">
+    Stop
+  </button>
+</section>

@@ -1,0 +1,4 @@
+Use the following credentials to login in to the application to be able to use it (in case you don't want to Sign Up yourself):
+
+Email: admin@mail.com
+Password: adminpass

@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/*
+to see all the prebuilt Material themes we can go to the node_modules/@angular/material/prebuilt-themes folder, and choose one of the following themes: deeppurple-amber.css, indigo-pink.css, pink-bluegrey.css, or purple-green.css
+*/
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}

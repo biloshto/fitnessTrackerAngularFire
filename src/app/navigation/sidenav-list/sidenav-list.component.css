@@ -1,0 +1,19 @@
+a {
+  text-decoration: none;
+  color: #fff;
+  transition: all .25s ease;
+}
+
+a:hover,
+a:active {
+  color: #ddd;
+}
+
+.nav-caption {
+  display: inline-block;
+  padding-left: 6px;
+}
+
+.reverse {
+  transform: rotate(180deg);
+}

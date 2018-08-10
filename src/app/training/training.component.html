@@ -1,0 +1,15 @@
+<mat-tab-group *ngIf="!ongoingTraining">
+  <!-- the mat-tab-group should be shown only if there's no ongoing training -->
+  <mat-tab label="New Exercise">
+    <!-- <app-new-training (trainingStart)="ongoingTraining = true"></app-new-training> -->
+    <!-- listens for trainingStart event, and whenever it catches this event sets the ongoingTraining to true -->
+    <app-new-training></app-new-training>
+  </mat-tab>
+  <mat-tab label="Past Exercises">
+    <app-past-trainings></app-past-trainings>
+  </mat-tab>
+</mat-tab-group>
+<!-- <app-current-training *ngIf="ongoingTraining" (trainingExit)="ongoingTraining = false"></app-current-training> -->
+<!-- we no longer listen to the trainingExit event; this is not how we stop or finish our training any longer, instead we're using the TrainingService for this -->
+<app-current-training *ngIf="ongoingTraining"></app-current-training>
+<!-- the current training UI should be shown only if there's an ongoing training -->
